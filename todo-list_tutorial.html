@@ -12,8 +12,8 @@
   <!-- Your HTML -->
   <!-- ========= -->
 
-  <div id="container">Loading...</div>
-  <div id="container_">Another loading...</div>
+  <div id="container">Loading...</div>            <!-- Basic Backbone View -->
+  <div id="container_">Another loading...</div>   <!-- Backbone View with _.js Template -->
 
   <!-- ========= -->
   <!-- Libraries -->
@@ -30,6 +30,10 @@
   <!-- =============== -->
   <script type="text/javascript">
     // your JS code goes here
+
+    /* -----------------------
+         Basic Backbone View
+       ----------------------- */
     var AppView = Backbone.View.extend({
       // el - stands for element. Every view has a element associate in with HTML
       //      content will be rendered.
@@ -45,6 +49,11 @@
       }
     });
 
+    var appView = new AppView();
+
+    /* ------------------------------------
+         Backbone View with _.js Template
+       ------------------------------------ */
     var AppView_ = Backbone.View.extend({
       el: $('#container_'),
       // template which has the placeholder 'who' to be substitute later
@@ -59,7 +68,6 @@
       }
     });
 
-    var appView = new AppView();
     var appView_ = new AppView_();
   </script>
 
