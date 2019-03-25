@@ -12,8 +12,15 @@
   <!-- Your HTML -->
   <!-- ========= -->
 
-  <div id="container">Loading...</div>            <!-- Basic Backbone View -->
-  <div id="container_">Another loading...</div>   <!-- Backbone View with _.js Template -->
+  <section id="todoapp">
+    <header id="header">
+      <h1>Todos</h1>
+      <input id="new-todo" placeholder="What needs to be done?">
+    </header>
+    <section id="main">
+      <ul id="todo-list"></ul>
+    </section>
+  </section>
 
   <!-- ========= -->
   <!-- Libraries -->
@@ -31,44 +38,22 @@
   <script type="text/javascript">
     // your JS code goes here
 
-    /* -----------------------
-         Basic Backbone View
-       ----------------------- */
-    var AppView = Backbone.View.extend({
-      // el - stands for element. Every view has a element associate in with HTML
-      //      content will be rendered.
-      el: '#container',
-      // It's the first function called when this view it's instantiated.
-      initialize: function () {
-        this.render();
-      },
-      // $el - it's a cached jQuery object (el), in which you can use jQuery functions
-      //       to push content. Like the Hello World in this case.
-      render: function () {
-        this.$el.html("Hello World");
+    var app = {}; // create namespace for our app
+
+    app.Todo = Backbone.Model.extend({
+      defaults: {
+        title: '',
+        completed: false
       }
     });
 
-    var appView = new AppView();
-
-    /* ------------------------------------
-         Backbone View with _.js Template
-       ------------------------------------ */
-    var AppView_ = Backbone.View.extend({
-      el: $('#container_'),
-      // template which has the placeholder 'who' to be substitute later
-      template: _.template("<h3>Hello <%= who %></h3>"),
-      initialize: function () {
-        this.render();
-      },
-      render: function () {
-        // render the function using substituting the varible 'who' for 'inoino!'.
-        this.$el.html(this.template({ who: 'inoino!' }));
-        //***Try putting your name instead of inoino.
-      }
+    app.TodoList = Backbone.Collection.extend({
+      model: app.Todo,
+      localStorage: new Store("backbone-todo")
     });
 
-    var appView_ = new AppView_();
+    // instance of the Collection
+    app.todoList = new app.TodoList();
   </script>
 
 </body>
