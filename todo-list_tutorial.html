@@ -68,7 +68,9 @@
 
     var app = {}; // create namespace for our app
 
-    // Backbone Model
+    //--------------
+    // Models
+    //--------------
     app.Todo = Backbone.Model.extend({
       defaults: {
         title: '',
@@ -79,7 +81,9 @@
       }
     });
 
-    // Backbone Collection
+    //--------------
+    // Collections
+    //--------------
     app.TodoList = Backbone.Collection.extend({
       model: app.Todo,
       localStorage: new Store("backbone-todo")
@@ -88,7 +92,9 @@
     // instance of the Collection
     app.todoList = new app.TodoList();
 
-    // Backbone View
+    //--------------
+    // Views
+    //--------------
     // renders individual todo items list (li)
     app.TodoView = Backbone.View.extend({
       tagName: 'li',
@@ -143,7 +149,6 @@
 
     object.trigger("my_event", "my custom event");
 
-    // Backbone View
     // renders the full list of todo items calling TodoView for each one.
     app.AppView = Backbone.View.extend({
       el: '#todoapp',
@@ -179,11 +184,26 @@
         }
       }
     });
+    
+    //--------------
+    // Routers
+    //--------------
+    app.Router = Backbone.Router.extend({
+      routes: {
+        '*filter' : 'setFilter'
+      },
+      setFilter: function(params) {
+        console.log('app.router.params = ' + params);
+        window.filter = params.trim() || '';
+        app.todoList.trigger('reset');
+      }
+    });
 
     //--------------
     // Initializers
     //--------------
-
+    app.router = new app.Router();
+    Backbone.history.start();
     app.appView = new app.AppView();
   </script>
 
