@@ -54,17 +54,17 @@
     var app = {}; // namespace for the app
     
     app.Todo = Backbone.Model.extend({
-    	defaults: {
-    		title: '',
-    		completed: false
-    	}
+        defaults: {
+            title: '',
+            completed: false
+        }
     });
     ```
 - in console:
     ```javascript
     var todo = new app.Todo({
-    	title: 'Say Hi',
-    	completed: false
+        title: 'Say Hi',
+        completed: false
     });
     todo.get('title'); // "Say Hi"
     todo.get('created_at'); // undefined
@@ -84,10 +84,10 @@ maybe not anymore?
 - example:
     ```javascript
     app.TodoList =
-    	Backbone.Collection.extend({
-    		model: app.Todo,
-    		localStorage: new Store("todo")
-    	});
+        Backbone.Collection.extend({
+            model: app.Todo,
+            localStorage: new Store("todo")
+        });
     
     app.todoList = new app.TodoList();
     ```
@@ -97,8 +97,8 @@ maybe not anymore?
     todoList.create({ title: 'Hi' });
     
     var lmodel = new app.Todo({
-    	title: 'Hello',
-    	completed: true
+        title: 'Hello',
+        completed: true
     });
     todoList.add(lmodel);
     
@@ -115,16 +115,16 @@ maybe not anymore?
     - example:
         ```javascript
         var AppView = Backbone.View.extend({
-        	// el (element) : every View has an HTML element associated to render content
-        	el: '#container',
-        	// initialize : first function to be called when instantiated
-        	initialize: function() {
-        		this.render();
-        	},
-        	// $el : cached jQuery object in which you can push content
-        	render: function() {
-        		this.$el.html("Hello World");
-        	}
+            // el (element) : every View has an HTML element associated to render content
+            el: '#container',
+            // initialize : first function to be called when instantiated
+            initialize: function() {
+                this.render();
+            },
+            // $el : cached jQuery object in which you can push content
+            render: function() {
+                this.$el.html("Hello World");
+            }
         });
         
         // instantiate View
@@ -140,40 +140,40 @@ maybe not anymore?
         - can call other View's render function
     - *events*
         - syntax:
-        ```javascript
+            ```javascript
             events: { "<EVENT_TYPE> <ELEMENT_ID>": "CALLBACK_FUNCTION" };
-        ```
+            ```
         - example:
-        ```javascript
-                events: { 'keypress #new-todo': 'craeteTodoOnEnter' };
-                
-                (in jQuery:)
-                $('#new-todo').keypress(createTodoOnEnter);
-        ```
+            ```javascript
+            events: { 'keypress #new-todo': 'craeteTodoOnEnter' };
+            
+            (in jQuery:)
+            $('#new-todo').keypress(createTodoOnEnter);
+            ```
 - **_.js Templates**
     - syntax:
-    ```javascript
+        ```javascript
         _.template(templateString, [data], [settings]);
-    ```
-    → in *templateString* use the placeholder:
+        ```
+        → in *templateString* use the placeholder:
         - <%= %> : does not allow HTML escape
         - <%- %> : allows HTML escape
         - <% %> : run any JavaScript code
     - example:
-    ```javascript
+        ```javascript
         var AppView_ = Backbone.View.extend({
-          el: '#container_',
-          // template which has the placeholder 'who' to be substituted later
-          template: _.template("<h3>Hello <%= who %></h3>"),
-          initialize: function () {
-            this.render();
-          },
-          render: function () {
-            // render the function using substituting the varible 'who' for 'World!'.
-            this.$el.html(this.template({ who: 'World!' }));
-          }
+            el: '#container_',
+            // template which has the placeholder 'who' to be substituted later
+            template: _.template("<h3>Hello <%= who %></h3>"),
+            initialize: function () {
+                this.render();
+            },
+            render: function () {
+                // render the function using substituting the varible 'who' for 'World!'.
+                this.$el.html(this.template({ who: 'World!' }));
+            }
         });
-    ```
+        ```
 
 
 ### Backbone.Router
@@ -182,13 +182,13 @@ maybe not anymore?
 - example:
     ```javascript
     app.Router = Backbone.Router.extend({
-    	routes: {
-    		'*filter': 'setFilter'
-    	},
-    	setFilter: function(params) {
-    		console.log("params: " + params);
-    		window.filter = params.trim() || '';
-    	}
+        routes: {
+            '*filter': 'setFilter'
+        },
+        setFilter: function(params) {
+            console.log("params: " + params);
+            window.filter = params.trim() || '';
+        }
     });
     
     app.router = new app.Router();
@@ -205,13 +205,13 @@ maybe not anymore?
 - When event is triggered, executes the callback
 - setting Events on arbitrary objects using underscore.js
     ```javascript
-        var object = {},
-        		callback = function(msg) { console.log("Triggered" + msg); };
-        
-        _.extend(object, Backbone.Events);
-        
-        object.on("my_event", callback);
-        obejct.trigger("my_event", "my custom event");
+    var object = {},
+        callback = function(msg) { console.log("Triggered" + msg); };
+    
+    _.extend(object, Backbone.Events);
+    
+    object.on("my_event", callback);
+    obejct.trigger("my_event", "my custom event");
     ```
 
 
@@ -228,8 +228,8 @@ maybe not anymore?
 - the constructor:
     ```javascript
     Backbone.Model.extend({
-    	initialize: function() {
-    		console.log("Model created!");
-    	}
+        initialize: function() {
+            console.log("Model created!");
+        }
     });
     ```
