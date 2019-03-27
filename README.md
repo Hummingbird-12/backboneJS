@@ -2,6 +2,9 @@
 
 [Backbone.js](https://backbonejs.org) from scratch!
 
+
+[My study notes](./study_notes.md)
+
 <img src="https://backbonejs.org/docs/images/backbone.png" alt="Backbone.js logo" width="30%">
 
 ## Tutorials' Reference Sites
