@@ -159,6 +159,13 @@ maybe not anymore?
         - <%= %> : does not allow HTML escape
         - <%- %> : allows HTML escape
         - <% %> : run any JavaScript code
+        
+        
+        > (from [stackoverflow](https://stackoverflow.com/a/7241760)):
+        > - <%  %> : to execute some code
+        > - <%= %> : to print some value in template
+        > - <%- %> : to print some values HTML escaped
+        
     - example:
         ```javascript
         var AppView_ = Backbone.View.extend({
